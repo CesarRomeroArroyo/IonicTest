@@ -1,0 +1,52 @@
+@use 'mixins' as mixins;
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.content-avatar {
+  height: 40vh;
+  @include mixins.flex(center, center, column);
+  ion-avatar {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.details {
+  width: 100%;
+  margin-top: 1rem;
+  @include mixins.flex($direction: column);
+  .title-details {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0px 16px;
+  }
+  .item-details {
+    --inner-padding-start: 16px;
+    --inner-padding-end: 16px;
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    margin-top: 1rem;
+    .content-info {
+      width: 100%;
+      @include mixins.flex(stretch, flex-start, column);
+      .label {
+        font-size: 14px;
+        color: var(--dark);
+        font-weight: bold;
+        max-width: 75px;
+      }
+      .info-text {
+        font-size: 14px;
+        color: var(--medium);
+      }
+      .labels {
+        width: 100%;
+        margin-top: 8px;
+        @include mixins.flex(stretch, space-between);
+      }
+    }
+  }
+}

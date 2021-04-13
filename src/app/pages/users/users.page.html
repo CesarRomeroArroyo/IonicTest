@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>List users</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">List users</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ng-container *ngFor="let user of (users$ | async)">
+      <ion-item lines="full" detail>
+        <ion-avatar slot="start">
+          <img [src]="user.picture.large">
+        </ion-avatar>
+        <div class="content">
+          <div class="info" (click)="goToDetils(user)">
+            <ion-label class="info-title">{{user.name.first}} {{user.name.last}}</ion-label>
+            <ion-label class="info-text">{{user.cell}}</ion-label>
+          </div>
+        </div>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

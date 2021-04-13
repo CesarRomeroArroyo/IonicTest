@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="users"></ion-back-button>
+    </ion-buttons>
+    <ion-title>details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="(userSelected$ | async).length > 0">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="users"></ion-back-button>
+      </ion-buttons>
+      <ion-title size="large">details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="container">
+    <div class="content-avatar">
+      <ion-avatar slot="start">
+        <img [src]="(userSelected$ | async)[0].picture.large">
+      </ion-avatar>
+      <ion-item lines="none" (click)="takePicture()">
+        <ion-label>
+          Take picture
+        </ion-label>
+        <ion-icon name="camera" slot="end"></ion-icon>
+      </ion-item>
+    </div>
+    <div class="details">
+      <ion-label class="title-details">Details of user</ion-label>
+      <ion-item class="item-details" lines="full">
+        <div class="content-info">
+          <div class="labels">
+            <ion-label class="label">Name</ion-label>
+            <ion-label class="info-text">
+              {{(userSelected$ | async)[0].name.first}}
+              {{(userSelected$ | async)[0].name.last}}
+            </ion-label>
+          </div>
+          <div class="labels">
+            <ion-label class="label">Email</ion-label>
+            <ion-label class="info-text">{{(userSelected$ | async)[0].email}}</ion-label>
+          </div>
+          <div class="labels">
+            <ion-label class="label">Celphone</ion-label>
+            <ion-label class="info-text">{{(userSelected$ | async)[0].cell}}</ion-label>
+          </div>
+          <div class="labels">
+            <ion-label class="label">Bithday</ion-label>
+            <ion-label class="info-text">{{(userSelected$ | async)[0].registered.date}}</ion-label>
+          </div>
+          <div class="labels">
+            <ion-label class="label">Address</ion-label>
+            <ion-label class="info-text">{{(userSelected$ | async)[0].location.city}}</ion-label>
+          </div>
+          <div class="labels">
+            <ion-label class="label">Password</ion-label>
+            <ion-label class="info-text">{{(userSelected$ | async)[0].login.password}}</ion-label>
+          </div>
+        </div>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
